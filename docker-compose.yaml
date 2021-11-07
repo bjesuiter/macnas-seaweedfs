@@ -15,7 +15,7 @@ services:
     # -ip=master works, because 'master' is the dns name of this service container
     command: "master -ip=master -mdir=/metadata"
     volumes: 
-      - ${WEED_META_DIR}:/metadata
+      - ${WEED_MASTER_META_DIR}:/metadata
 
   ### Volume Service ###
   volume:
@@ -25,7 +25,7 @@ services:
       - 18080:18080
       - 9325:9325
     volumes: 
-      - ${WEED_STORAGE_DIR}:/data
+      - ${WEED_VOLUME_STORAGE_DIR}:/data
     command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325  -dir=/data'
     depends_on:
       - master
