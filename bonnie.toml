@@ -16,14 +16,15 @@ env_files = [".env"]
     docker-cleanup = "docker image prune"
 
     # everyday scripts
-    start.cmd                = "bonnie compose up -d"
-    start.subcommands.master = "bonnie compose up -d master"
-    start.subcommands.volume = "bonnie compose up -d volume"
-    start.subcommands.filer  = "bonnie compose up -d filer"
-    stop                     = "bonnie compose down"
-    logs                     = "bonnie compose logs -f -t %%"
-    weed                     = "bonnie compose run weed %%"
-    test-upload              = "bonnie weed upload -master=\"master:9333\" -dir=\"/examples\""
+    start.cmd                   = "bonnie compose up -d"
+    start.subcommands.master    = "bonnie compose up -d master"
+    start.subcommands.volume    = "bonnie compose up -d volume"
+    start.subcommands.filer     = "bonnie compose up -d filer"
+    start.subcommands.fusemount = "bonnie compose up -d fusemount"
+    stop                        = "bonnie compose down"
+    logs                        = "bonnie compose logs -f -t %%"
+    weed                        = "bonnie compose run weed %%"
+    test-upload                 = "bonnie weed upload -master=\"master:9333\" -dir=\"/examples\""
 
     # extended scripts
     update = [
