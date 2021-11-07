@@ -10,17 +10,19 @@ env_files = [".env"]
 [scripts]
     # [Internal] Main compose alias to ensure, that doppler-run will be executed with each compose command
     compose = "doppler run -- docker-compose %%"
+    up      = "bonnie compose up -d --remove-orphans %%"
     # [Internal] - more base commands
     git-pull       = "git pull --ff"
     docker-pull    = "bonnie compose pull"
     docker-cleanup = "docker image prune"
 
     # everyday scripts
-    start.cmd                   = "bonnie compose up -d"
-    start.subcommands.master    = "bonnie compose up -d master"
-    start.subcommands.volume    = "bonnie compose up -d volume"
-    start.subcommands.filer     = "bonnie compose up -d filer"
-    start.subcommands.fusemount = "bonnie compose up -d fusemount"
+    start.cmd                   = "bonnie up"
+    start.subcommands.master    = "bonnie up master"
+    start.subcommands.volume    = "bonnie up volume"
+    start.subcommands.filer     = "bonnie up filer"
+    start.subcommands.fusemount = "bonnie up fusemount"
+    start.subcommands.webdav    = "bonnie up webdav"
     stop                        = "bonnie compose down"
     logs                        = "bonnie compose logs -f -t %%"
     weed                        = "bonnie compose run weed %%"
