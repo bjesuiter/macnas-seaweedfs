@@ -11,7 +11,7 @@ services:
       - 9333:9333
       - 19333:19333
     # -ip=master works, because 'master' is the dns name of this service container
-    command: "master -ip=master -dir=${WEED_STORAGE_DIR}"
+    command: "master -ip=master"
 
   ### Volume Service ###
   volume:
@@ -20,7 +20,7 @@ services:
       - 8080:8080
       - 18080:18080
       - 9325:9325
-    command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325'
+    command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325  -dir=${WEED_STORAGE_DIR}'
     depends_on:
       - master
   
