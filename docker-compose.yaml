@@ -11,7 +11,7 @@ services:
       - 9333:9333
       - 19333:19333
     # -ip=master works, because 'master' is the dns name of this service container
-    command: "master -ip=master"
+    command: "master -ip=master -dir=${WEED_STORAGE_DIR}"
 
   ### Volume Service ###
   volume:
