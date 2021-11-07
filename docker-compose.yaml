@@ -8,7 +8,9 @@ services:
   master:
     image: ${SEAWEEDFS_IMAGE}
     ports:
+      # normal operation port
       - 9333:9333
+      # gRPC port (normal port + 10'000)
       - 19333:19333
     # -ip=master works, because 'master' is the dns name of this service container
     command: "master -ip=master -mdir=/metadata"
@@ -36,6 +38,8 @@ services:
       - 18888:18888
       - 9326:9326
     command: 'filer -master="master:9333"  -metricsPort=9326'
+    volumes: 
+      - config/filer.toml:/etc/seaweedfs/filer.toml
     tty: true
     stdin_open: true
     depends_on:
