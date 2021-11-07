@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  master:
+    image: ${SEAWEEDFS_IMAGE}
+    ports:
+      - 9333:9333
+      - 19333:19333
+    command: "master -ip=master"
+  
