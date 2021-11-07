@@ -31,3 +31,12 @@ services:
     depends_on:
       - master
       - volume
+  webdav:
+    image: ${SEAWEEDFS_IMAGE}
+    ports:
+      - 7333:7333
+    command: 'webdav -filer="filer:8888"'
+    depends_on:
+      - master
+      - volume
+      - filer
