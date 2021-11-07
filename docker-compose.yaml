@@ -65,6 +65,7 @@ services:
   #   command: 'mount -filer=filer:8888 -dir=/mnt/external -filer.path=/ '
 
   ### Webdav Interface for this Seaweed instance ###
+  ### CAUTION: BIG PROBLEM: ONLY WITHOUT AUTHENTICATION!
   webdav:
     image: ${SEAWEEDFS_IMAGE}
     ports:

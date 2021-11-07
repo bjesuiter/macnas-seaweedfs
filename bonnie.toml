@@ -10,6 +10,7 @@ env_files = [".env"]
 [scripts]
     # [Internal] Main compose alias to ensure, that doppler-run will be executed with each compose command
     compose = "doppler run -- docker-compose %%"
+    eval    = "doppler secrets get --plain %%"
     up      = "bonnie compose up -d --remove-orphans %%"
     # [Internal] - more base commands
     git-pull       = "git pull --ff"
@@ -41,4 +42,5 @@ env_files = [".env"]
 
     # Weed client commands
     # expects the 'weed' executable to be in path and accessible
-    mount = "weed mount -filer=localhost:8888 -dir=~/mnt -filer.path=/ -volumeServerAccess=filerProxy"
+    # mount = "weed mount -filer=localhost:8888 -dir=$(doppler secrets get --plain LOCAL_FUSE_MOUNTPOINT) -filer.path=/ -volumeServerAccess=filerProxy"
+    mount = "weed mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -filer.path=/ -volumeServerAccess=filerProxy"
