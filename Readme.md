@@ -18,3 +18,11 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 ## Run this repo 
 
 `bonnie start`
+
+## Alternative Way 
+
+If docker-compose does not work: 
+
+- [How to run seaweedFS as a daemon](https://stackoverflow.com/questions/65704384/how-to-run-seaweedfs-as-a-daemon)
+    - Systemd / Launchd on mac 
+    - [Daemonize](http://software.clapper.org/daemonize/)
