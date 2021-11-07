@@ -8,5 +8,13 @@ version = "0.3.2"
 env_files = [".env"]
 
 [scripts]
-    start = "doppler run -- docker-compose up -d"
-    stop  = "docker-compose down"
+    # [Internal] Main compose alias to ensure, that doppler-run will be executed with each compose command
+    compose = "doppler run -- docker-compose %%"
+
+    # Basic Commands
+    start = "bonnie compose up -d"
+    stop  = "bonnie compose down"
+
+    # Weed client commands
+    # expects the 'weed' executable to be in path and accessible
+    mount = "weed mount -filer=localhost:8888 -dir=/Volumes/seaweedfs -filer.path=/"
