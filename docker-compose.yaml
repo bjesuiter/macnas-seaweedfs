@@ -43,6 +43,10 @@ services:
   ### Automatic Fuse Mount of the seaweedfs content to the host system ###
   fusemount: 
     image: ${SEAWEEDFS_IMAGE}
+    depends_on:
+      - master
+      - filer
+    # entrypoint: 'nsenter -t 1 -m -u -n -i -- ${WEED_CLI_HOST_PATH} mount -filer="localhost:8888,localhost:8889" -filer.path=/ -dir=${LOCAL_FUSE_MOUNTPOINT}'
     volumes: 
       # Creates a docker bind mount from inside this container to the host machine, 
       # To be able to access the fuse mount binding from the weed executable
@@ -61,13 +65,13 @@ services:
       - filer
 
   # TODO: Why do I need this cronjob container??
-  cronjob:
-    image: ${SEAWEEDFS_IMAGE}
-    command: 'cronjob'
-    environment:
-      # Run re-replication every 2 minutes
-      CRON_SCHEDULE: '*/2 * * * * *' # Default: '*/5 * * * * *'
-      WEED_MASTER: master:9333 # Default: localhost:9333
-    depends_on:
-      - master
-      - volume
+  # cronjob:
+  #   image: ${SEAWEEDFS_IMAGE}
+  #   command: 'cronjob'
+  #   environment:
+  #     # Run re-replication every 2 minutes
+  #     CRON_SCHEDULE: '*/2 * * * * *' # Default: '*/5 * * * * *'
+  #     WEED_MASTER: master:9333 # Default: localhost:9333
+  #   depends_on:
+  #     - master
+  #     - volume
