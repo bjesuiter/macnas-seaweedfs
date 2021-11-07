@@ -1,6 +1,7 @@
 version: '3'
 
 # Note: all server ip addresses are referenced by docker-compose service name in this file! :) 
+# Source compose file: https://raw.githubusercontent.com/chrislusf/seaweedfs/master/docker/seaweedfs-compose.yml
 
 services:
   master:
