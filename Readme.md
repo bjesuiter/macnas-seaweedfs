@@ -19,6 +19,11 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 `bonnie start`
 
+## Debugging
+
+- Master Server Dashboard at: <http://localhost:9333>
+- Volume Server Dashboards at: <http://localhost:8080/ui/index.html>
+
 ## Alternative Way 
 
 If docker-compose does not work: 
