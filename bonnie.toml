@@ -19,6 +19,7 @@ env_files = [".env"]
     start.cmd                = "bonnie compose up -d"
     start.subcommands.master = "bonnie compose up -d master"
     start.subcommands.volume = "bonnie compose up -d volume"
+    start.subcommands.filer  = "bonnie compose up -d filer"
     stop                     = "bonnie compose down"
     logs                     = "bonnie compose logs -f -t %%"
     weed                     = "bonnie compose run weed %%"
