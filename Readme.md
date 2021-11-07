@@ -28,7 +28,13 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 ### code 255 osxfuse
 
+=> evtl. because virtual device limit of macos is reached (6 < macos 10.13, 10 afterwards)
+=> restart or stop smb service for example "sudo kextunload -b com.apple.filesystems.smbfs"
 
+### kext load failed: -603946989 
+
+=> search for macfuse problem with that number
+=> SOLVED: Problem was that fuse was too old
 
 ## Alternative Way 
 
