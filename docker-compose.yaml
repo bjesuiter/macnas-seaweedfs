@@ -20,7 +20,9 @@ services:
       - 8080:8080
       - 18080:18080
       - 9325:9325
-    command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325  -dir=${WEED_STORAGE_DIR}'
+    volumes: 
+      - ${WEED_STORAGE_DIR}:/data
+    command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325  -dir=/data'
     depends_on:
       - master
   
