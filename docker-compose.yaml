@@ -4,6 +4,7 @@ version: '3'
 # Source compose file: https://raw.githubusercontent.com/chrislusf/seaweedfs/master/docker/seaweedfs-compose.yml
 
 services:
+
   master:
     image: ${SEAWEEDFS_IMAGE}
     ports:
@@ -11,6 +12,7 @@ services:
       - 19333:19333
     # -ip=master works, because 'master' is the dns name of this service container
     command: "master -ip=master"
+
   volume:
     image: ${SEAWEEDFS_IMAGE}
     ports:
@@ -32,6 +34,25 @@ services:
     depends_on:
       - master
       - volume
+
+  fusemount: 
+    image: ${SEAWEEDFS_IMAGE}
+    volumes: 
+      # Creates a docker bind mount from inside this container to the host machine, 
+      # To be able to access the fuse mount binding from the weed executable
+      - ${LOCAL_MOUNT_DIR}:/mnt/external
+    command: 'mount -filer=filer:8888 -dir=/mnt/external -filer.path=/ -volumeServerAccess=direct'
+
+  webdav:
+    image: ${SEAWEEDFS_IMAGE}
+    ports:
+      - ${WEBDAV_PORT}:7333
+    command: 'webdav -filer="filer:8888"'
+    depends_on:
+      - master
+      - volume
+      - filer
+
   # TODO: Why do I need this cronjob container??
   cronjob:
     image: ${SEAWEEDFS_IMAGE}
@@ -43,12 +64,3 @@ services:
     depends_on:
       - master
       - volume
-  webdav:
-    image: ${SEAWEEDFS_IMAGE}
-    ports:
-      - ${WEBDAV_PORT}:7333
-    command: 'webdav -filer="filer:8888"'
-    depends_on:
-      - master
-      - volume
-      - filer
