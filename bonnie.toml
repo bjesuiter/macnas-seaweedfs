@@ -21,9 +21,8 @@ env_files = [".env"]
     start.subcommands.volume = "bonnie compose up -d volume"
     stop                     = "bonnie compose down"
     logs                     = "bonnie compose logs -f -t %%"
-
-    # runs the 'weed' cli on the weed service in docker-compose
-    weed = "bonnie compose run weed weed %%"
+    weed                     = "bonnie compose run weed %%"
+    test-upload              = "bonnie weed upload -master=\"master:9333\" -dir=\"/examples\""
 
     # extended scripts
     update = [
