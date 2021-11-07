@@ -16,9 +16,14 @@ env_files = [".env"]
     docker-cleanup = "docker image prune"
 
     # everyday scripts
-    start = "bonnie compose up -d"
-    stop  = "bonnie compose down"
-    logs  = "bonnie compose logs -f -t %%"
+    start.cmd                = "bonnie compose up -d"
+    start.subcommands.master = "bonnie compose up -d master"
+    start.subcommands.volume = "bonnie compose up -d volume"
+    stop                     = "bonnie compose down"
+    logs                     = "bonnie compose logs -f -t %%"
+
+    # runs the 'weed' cli on the weed service in docker-compose
+    weed = "bonnie compose run weed weed %%"
 
     # extended scripts
     update = [
