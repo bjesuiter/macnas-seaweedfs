@@ -17,4 +17,4 @@ env_files = [".env"]
 
     # Weed client commands
     # expects the 'weed' executable to be in path and accessible
-    mount = "weed mount -filer=localhost:8888 -dir=/Volumes/seaweedfs -filer.path=/"
+    mount = "weed mount -filer=localhost:8888 -dir=~/mnt -filer.path=/ -volumeServerAccess=filerProxy"
