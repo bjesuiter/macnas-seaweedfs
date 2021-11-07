@@ -68,6 +68,8 @@ services:
     image: ${SEAWEEDFS_IMAGE}
     restart: "no"
     entrypoint: ["echo", "Service weed is only for being used with docker-compose run weed"]
+    volumes: 
+      - "${EXAMPLES_FOLDER}":/examples
   
   # TODO: Why do I need this cronjob container??
   # cronjob:
