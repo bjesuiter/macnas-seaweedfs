@@ -1,10 +1,22 @@
 version: '3'
 
+# Note: all server ip addresses are referenced by docker-compose service name in this file! :) 
+
 services:
   master:
     image: ${SEAWEEDFS_IMAGE}
     ports:
       - 9333:9333
       - 19333:19333
+    # -ip=master works, because 'master' is the dns name of this service container
     command: "master -ip=master"
+  volume:
+    image: ${SEAWEEDFS_IMAGE}
+    ports:
+      - 8080:8080
+      - 18080:18080
+      - 9325:9325
+    command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325'
+    depends_on:
+      - master
   
