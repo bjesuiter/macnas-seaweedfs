@@ -4,7 +4,7 @@ version: '3'
 # Source compose file: https://raw.githubusercontent.com/chrislusf/seaweedfs/master/docker/seaweedfs-compose.yml
 
 services:
-
+  ### Master Service ###
   master:
     image: ${SEAWEEDFS_IMAGE}
     ports:
@@ -13,6 +13,7 @@ services:
     # -ip=master works, because 'master' is the dns name of this service container
     command: "master -ip=master"
 
+  ### Volume Service ###
   volume:
     image: ${SEAWEEDFS_IMAGE}
     ports:
@@ -22,6 +23,8 @@ services:
     command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325'
     depends_on:
       - master
+  
+  ### Filer Service ###
   filer:
     image: ${SEAWEEDFS_IMAGE}
     ports:
@@ -35,6 +38,7 @@ services:
       - master
       - volume
 
+  ### Automatic Fuse Mount of the seaweedfs content to the host system ###
   fusemount: 
     image: ${SEAWEEDFS_IMAGE}
     volumes: 
@@ -43,6 +47,7 @@ services:
       - ${LOCAL_MOUNT_DIR}:/mnt/external
     command: 'mount -filer=filer:8888 -dir=/mnt/external -filer.path=/ -volumeServerAccess=direct'
 
+  ### Webdav Interface for this Seaweed instance ###
   webdav:
     image: ${SEAWEEDFS_IMAGE}
     ports:
