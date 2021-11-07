@@ -21,6 +21,8 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 ## Debugging
 
+[Official FAQ](https://github.com/chrislusf/seaweedfs/wiki/FAQ#how-to-access-the-server-dashboard)
+
 - Master Server Dashboard at: <http://localhost:9333>
 - Volume Server Dashboards at: <http://localhost:8080/ui/index.html>
 
