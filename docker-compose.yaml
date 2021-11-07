@@ -44,7 +44,7 @@ services:
     volumes: 
       # Creates a docker bind mount from inside this container to the host machine, 
       # To be able to access the fuse mount binding from the weed executable
-      - ${LOCAL_MOUNT_DIR}:/mnt/external
+      - ${LOCAL_FUSE_MOUNTPOINT}:/mnt/external
     command: 'mount -filer=filer:8888 -dir=/mnt/external -filer.path=/ -volumeServerAccess=direct'
 
   ### Webdav Interface for this Seaweed instance ###
