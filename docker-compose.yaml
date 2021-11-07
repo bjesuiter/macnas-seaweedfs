@@ -39,8 +39,8 @@ services:
       - 9326:9326
     command: 'filer -master="master:9333"  -metricsPort=9326'
     volumes: 
-      - ./config/filer.toml:/etc/seaweedfs/filer.toml
-      - ${WEED_FILER_DB_DIR}/etc/seaweedfs/filerldb2
+      - ./filer-config:/etc/seaweedfs
+      - ${WEED_FILER_DB_DIR}:/seaweedfs/filer/filerldb2
     tty: true
     stdin_open: true
     depends_on:
