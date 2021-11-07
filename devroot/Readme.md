@@ -1,0 +1,1 @@
+This devroot folder is the file-structure folder where seaweed should place all its content when running it on a dev machine
