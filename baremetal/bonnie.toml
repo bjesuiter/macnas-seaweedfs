@@ -17,7 +17,7 @@ version = "0.3.2"
     # -nonempty => since the mountpoint has a .gitkeep file, this is needed to force weed to mount into this folder
     # -replication=000 => files should not be replicated for now (maybe later, when seaweed replaces my zfs install
     # -volumeServerAccess can have options: publicUrl|filerProxy
-    mount.cmd               = "echo 'bonnie mount <folder-alias> (example: test'"
-    mount.subcommands.root  = "bonnie weed mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -filer.path=/ -volumeServerAccess=direct -nonempty -replication=000"
-    mount.subcommands.debug = "bonnie weed -v=4 mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -filer.path=/test -volumeServerAccess=direct -nonempty -replication=000"
-    mount.subcommands.test  = "bonnie weed mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -filer.path=/test -volumeServerAccess=direct -nonempty -replication=000"
+    mount.cmd              = "echo 'bonnie mount <folder-alias> (example: test)'"
+    mountBase              = "bonnie weed mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -allowOthers -volumeServerAccess=direct -nonempty -replication=000"
+    mount.subcommands.root = "bonnie mountBase -filer.path=/ "
+    mount.subcommands.test = "bonnie mountBase  -filer.path=/test "
