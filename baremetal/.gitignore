@@ -7,5 +7,5 @@ filerldb2/*
 mdir_master/*
 !/mdir_master/.gitkeep
 
-mnt/*
-!/mnt/.gitkeep
+mnt/SeaweedFS/*
+!/mnt/SeaweedFS/.gitkeep
