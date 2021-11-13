@@ -23,6 +23,11 @@
   enabled = true
   dir     = "/seaweedfs/filer/filerldb2" # directory to store level db files
 
+
+  ######################################
+  # Options which may be relevant later
+  ######################################
+
 [leveldb3]
   # similar to leveldb2.
   # each bucket has its own meta store.
