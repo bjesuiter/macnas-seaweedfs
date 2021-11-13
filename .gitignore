@@ -2,7 +2,3 @@
 devroot/*
 !devroot/.gitkeep
 !devroot/Readme.md
-
-baremetal/data/*
-!baremetal/data/.gitkeep
-!baremetal/filerdb2/.gitkeep

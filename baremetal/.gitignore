@@ -1,0 +1,5 @@
+data/*
+!data/.gitkeep
+
+filerdb2/*
+!/filerdb2/.gitkeep
