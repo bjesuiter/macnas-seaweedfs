@@ -1,0 +1,10 @@
+version = "0.3.2"
+
+# This config allows running seaweedfs on baremetal
+[scripts]
+    # [Internal] Main compose alias to ensure, that doppler-run will be executed with each compose command
+    doppler = "doppler run -- %%"
+    eval    = "doppler secrets get --plain %%"
+
+    # everyday scripts
+    start = "bonnie doppler weed server -dir=\"./data\" --filer=true"
