@@ -55,10 +55,13 @@ weed filer.copy file_or_dir1 [file_or_dir2 file_or_dir3] http://localhost:8888/p
 => search for macfuse problem with that number
 => SOLVED: Problem was that fuse was too old
 
-## Alternative Way 
+## Docker-Compose vs. Bare-Metal
 
 If docker-compose does not work: 
 
 - [How to run seaweedFS as a daemon](https://stackoverflow.com/questions/65704384/how-to-run-seaweedfs-as-a-daemon)
     - Systemd / Launchd on mac 
     - [Daemonize](http://software.clapper.org/daemonize/)
+
+Bare-Metal: 
+- faster access from filer to volumes
