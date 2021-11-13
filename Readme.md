@@ -19,6 +19,14 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 `bonnie start`
 
+## Weed Cheatsheet
+
+Generate default config files 
+```sh 
+weed scaffold -config=master output="."
+weed scaffold -config=filer output="."
+```
+
 ## Debugging
 
 [Official FAQ](https://github.com/chrislusf/seaweedfs/wiki/FAQ#how-to-access-the-server-dashboard)
