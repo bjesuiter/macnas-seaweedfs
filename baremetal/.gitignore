@@ -3,3 +3,6 @@ data/*
 
 filerldb2/*
 !/filerldb2/.gitkeep
+
+mdir_master/*
+!/mdir_master/.gitkeep
