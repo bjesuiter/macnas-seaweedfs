@@ -2,3 +2,5 @@
 devroot/*
 !devroot/.gitkeep
 !devroot/Readme.md
+
+.DS_Store
