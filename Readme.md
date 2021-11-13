@@ -21,12 +21,21 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 ## Weed Cheatsheet
 
-Generate default/template config files 
+### Generate default/template config files 
 ```sh 
 weed scaffold -config=master -output="."
 weed scaffold -config=filer -output="."
 
 # view content of these templates, by ommiting the output flag
+```
+
+### Getting many files into a Filer Store
+The easiest way is just to use the OS-provided copy command from the command line. However, usually it is single-threaded.
+
+The most efficient way is to use "weed filer.copy". It is multi-threaded and bypasses the FUSE layer.
+```
+# Example: 
+weed filer.copy file_or_dir1 [file_or_dir2 file_or_dir3] http://localhost:8888/path/to/a/folder/
 ```
 
 ## Debugging
