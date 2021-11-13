@@ -21,7 +21,7 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 ## Weed Cheatsheet
 
-Generate default config files 
+Generate default/template config files 
 ```sh 
 weed scaffold -config=master output="."
 weed scaffold -config=filer output="."
