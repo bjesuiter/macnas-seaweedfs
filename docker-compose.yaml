@@ -47,23 +47,6 @@ services:
       - master
       - volume
 
-  ### Automatic Fuse Mount of the seaweedfs content to the host system ###
-  ### TODO: Currently broken! 
-  ### Try Fix with: https://github.com/chrislusf/seaweedfs/wiki/FUSE-Mount
-  # fusemount: 
-  #   image: ${SEAWEEDFS_IMAGE}
-  #   depends_on:
-  #     - master
-  #     - volume
-  #     - filer
-  #   # entrypoint: 'nsenter -t 1 -m -u -n -i -- ${WEED_CLI_HOST_PATH} mount -filer="localhost:8888,localhost:8889" -filer.path=/ -dir=${LOCAL_FUSE_MOUNTPOINT}'
-  #   volumes: 
-  #     # Creates a docker bind mount from inside this container to the host machine, 
-  #     # To be able to access the fuse mount binding from the weed executable
-  #     - ${LOCAL_FUSE_MOUNTPOINT}:/mnt/external
-  #   # -volumeServerAccess=direct
-  #   command: 'mount -filer=filer:8888 -dir=/mnt/external -filer.path=/ '
-
   ### Webdav Interface for this Seaweed instance ###
   ### CAUTION: BIG PROBLEM: ONLY WITHOUT AUTHENTICATION!
   webdav:
