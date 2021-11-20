@@ -65,3 +65,7 @@ If docker-compose does not work:
 
 Bare-Metal: 
 - faster access from filer to volumes
+
+## Known Errors
+### fuse Mount is not writeable through desktop icon on macOS 
+My Github Issue: [[mount] Fuse Mount is not writeable through virtual drive icon on macOS desktop](https://github.com/chrislusf/seaweedfs/issues/2445)
