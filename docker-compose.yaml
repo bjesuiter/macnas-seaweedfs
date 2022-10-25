@@ -1,7 +1,8 @@
-version: '3'
+version: '3.9'
 
 # Note: all server ip addresses are referenced by docker-compose service name in this file! :) 
 # Source compose file: https://raw.githubusercontent.com/chrislusf/seaweedfs/master/docker/seaweedfs-compose.yml
+# Last Update of this docker-compose based on source example: 2022-10-25
 
 services:
   ### Master Service ###
@@ -12,21 +13,26 @@ services:
       - 9333:9333
       # gRPC port (normal port + 10'000)
       - 19333:19333
+      # metrics port
+      - 9324:9324
     # -ip=master works, because 'master' is the dns name of this service container
-    command: "master -ip=master -mdir=/metadata"
+    command: "master -ip=master -ip.bind=0.0.0.0 -mdir=/volumes/metadata"
     volumes: 
-      - ${WEED_MASTER_META_DIR}:/metadata
+      - ${WEED_MASTER_META_DIR}:/volumes/metadata
 
   ### Volume Service ###
   volume:
     image: ${SEAWEEDFS_IMAGE}
     ports:
+      # port for volume server http api - defined in volume start command below
       - 8080:8080
+      # bje assumes: gRPC port
       - 18080:18080
+      # metrics port
       - 9325:9325
+    command: 'volume -mserver="master:9333" -ip.bind=0.0.0.0 -port=8080  -metricsPort=9325  -dir=/volumes/data'
     volumes: 
-      - ${WEED_VOLUME_STORAGE_DIR}:/data
-    command: 'volume -mserver="master:9333" -port=8080  -metricsPort=9325  -dir=/data'
+      - ${WEED_VOLUME_STORAGE_DIR}:/volumes/data
     depends_on:
       - master
   
@@ -34,10 +40,13 @@ services:
   filer:
     image: ${SEAWEEDFS_IMAGE}
     ports:
+      # port for file server http api - defined in filer start command below
       - 8888:8888
+      # bje assume: gRPC Port for this filer instance
       - 18888:18888
+      # metrics port
       - 9326:9326
-    command: 'filer -master="master:9333"  -metricsPort=9326'
+    command: 'filer -master="master:9333" -ip.bind=0.0.0.0 -metricsPort=9326'
     volumes: 
       - ./filer-config:/etc/seaweedfs
       - ${WEED_FILER_DB_DIR}:/seaweedfs/filer/filerldb2
@@ -49,15 +58,15 @@ services:
 
   ### Webdav Interface for this Seaweed instance ###
   ### CAUTION: BIG PROBLEM: ONLY WITHOUT AUTHENTICATION!
-  webdav:
-    image: ${SEAWEEDFS_IMAGE}
-    ports:
-      - ${WEBDAV_PORT}:7333
-    command: 'webdav -filer="filer:8888"'
-    depends_on:
-      - master
-      - volume
-      - filer
+  # webdav:
+  #   image: ${SEAWEEDFS_IMAGE}
+  #   ports:
+  #     - ${WEBDAV_PORT}:7333
+  #   command: 'webdav -filer="filer:8888"'
+  #   depends_on:
+  #     - master
+  #     - volume
+  #     - filer
 
   weed:
     image: ${SEAWEEDFS_IMAGE}
