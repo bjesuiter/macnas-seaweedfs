@@ -8,7 +8,7 @@ version = "0.3.2"
     weed    = "bonnie doppler weed %%"
 
     # everyday scripts
-    start.cmd                = "bonnie weed server -dir=\"./data\" --filer=true"
+    start.cmd                = "bonnie weed server -dir=\"./data\" -filer -s3"
     start.subcommands.master = "bonnie weed master -ip=$(bonnie eval WEED_IP_MASTER) -mdir=data"
     start.subcommands.volume = "bonnie weed volume -mserver=\"$(bonnie eval WEED_IP_MASTER):9333\" -port=8080  -metricsPort=9325  -dir=data"
     start.subcommands.filer  = "bonnie weed filer -master=\"$(bonnie eval WEED_IP_MASTER):9333\"  -metricsPort=9326"
