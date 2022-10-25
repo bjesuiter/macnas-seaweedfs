@@ -38,8 +38,17 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 - `bonnie mount`
 
 => Latest Speedtest (2022-10-25): 615 MB/s write, 655 MB/s read 
+=> mit Command: `weed mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -nonempty -volumeServerAccess=filerProxy -replication=000 -filer.path=/`
 => with direct volume access from fuse to volumes (not proxied by filer server)
 => Reicht nur nicht für 8K 60FPS, laut Blackmagic Disk Test :D 
+
+=> without direct volume access (via filerProxy) - as counter-test to running filerProxy inside docker
+write: 355 MB/s, read: 418 MB/s
+=> way faster as with running inside docker!!!
+=> mit command: `bonnie weed -v=4 mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -allowOthers -volumeServerAccess=filerProxy -nonempty -replication=000`
+
+=> CAUTION! The fast mounting (> 600MB/s) command differs from the slower mounting command ( ~ 355 MB/s to 420 MB/s). 
+=> Find out, which param makes for this speed difference!
 
 ## Weed Cheatsheet
 
@@ -94,3 +103,8 @@ My Github Issue: [[mount] Fuse Mount is not writeable through virtual drive icon
 
 Usable alternative: 
 Mountpoint can be accessed normally via mountpoint path in filesystem. 
+
+## Nice Links 
+
+- Setting up SeaweedFS Cluster with Ubuntu 20.04: 
+  https://www.howtoforge.de/anleitung/so-installieren-und-konfigurieren-sie-seaweedfs-cluster-unter-ubuntu-20-04/

@@ -24,3 +24,6 @@ version = "0.3.2"
     mountBase              = "bonnie weed -v=4 mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -allowOthers -volumeServerAccess=direct -nonempty -replication=000"
     mount.subcommands.root = "bonnie mountBase -filer.path=/ "
     mount.subcommands.test = "bonnie mountBase  -filer.path=/test "
+
+    fuseproxy.cmd  = "bonnie weed -v=4 mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -allowOthers -volumeServerAccess=filerProxy -nonempty -replication=000"
+    fusedirect.cmd = "bonnie weed -v=4 mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -allowOthers -volumeServerAccess=direct -nonempty -replication=000"
