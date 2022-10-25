@@ -24,6 +24,13 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 => without direct volume access from fuse to volumes (proxied by filer server, bc volume servers are running in docker-compose!)
 => Ohhhhh shit! :/
 
+=> running with direct access of fuse to volume servers by `bonnie start fusedirect`
+=> possible in theory, but the volumes have to be accessible from outside the docker-compose network! 
+=> See this Guide for running master and volumes on public internet!
+   https://github.com/seaweedfs/seaweedfs/wiki/Run-Blob-Storage-on-Public-Internet
+
+   (based on this issue thread: https://github.com/seaweedfs/seaweedfs/issues/2020)
+
 ## Run this repo - Baremetall MacOS 
 
 - `cd baremetal`
