@@ -4,3 +4,6 @@ devroot/*
 !devroot/Readme.md
 
 .DS_Store
+
+mnt/*
+!/mnt/.gitkeep
