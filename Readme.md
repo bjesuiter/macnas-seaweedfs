@@ -15,9 +15,15 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 => Provides secrets for seaweedfs
 
-## Run this repo 
+## Run this repo - Docker 
 
 `bonnie start`
+
+## Run this repo - Baremetall MacOS 
+
+- `cd baremetal`
+- `bonnie start`
+- `bonnie mount`
 
 ## Weed Cheatsheet
 
