@@ -18,16 +18,16 @@ env_files = [".env"]
     docker-cleanup = "docker image prune"
 
     # everyday scripts
-    start.cmd                   = "bonnie up"
-    start.subcommands.master    = "bonnie up master"
-    start.subcommands.volume    = "bonnie up volume"
-    start.subcommands.filer     = "bonnie up filer"
-    start.subcommands.fusemount = "bonnie up fusemount"
-    start.subcommands.webdav    = "bonnie up webdav"
-    stop                        = "bonnie compose down"
-    logs                        = "bonnie compose logs -f -t %%"
-    weed                        = "bonnie compose run weed %%"
-    test-upload                 = "bonnie weed upload -master=\"master:9333\" -dir=\"/examples\""
+    start.cmd                = "bonnie up"
+    start.subcommands.master = "bonnie up master"
+    start.subcommands.volume = "bonnie up volume"
+    start.subcommands.filer  = "bonnie up filer"
+    start.subcommands.fuse   = "weed -v=4 mount -filer=localhost:8888 -dir=$(bonnie eval LOCAL_FUSE_MOUNTPOINT) -allowOthers -volumeServerAccess=filerProxy -nonempty -replication=000"
+    start.subcommands.webdav = "bonnie up webdav"
+    stop                     = "bonnie compose down"
+    logs                     = "bonnie compose logs -f -t %%"
+    weed                     = "bonnie compose run weed %%"
+    test-upload              = "bonnie weed upload -master=\"master:9333\" -dir=\"/examples\""
 
     # extended scripts
     update = [

@@ -17,7 +17,12 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 
 ## Run this repo - Docker 
 
-`bonnie start`
+- `bonnie start`
+- `bonnie start fuse`
+
+=> Latest Speedtest (2022-10-25): 65 MB/s write, 65 MB/s read 
+=> without direct volume access from fuse to volumes (proxied by filer server, bc volume servers are running in docker-compose!)
+=> Ohhhhh shit! :/
 
 ## Run this repo - Baremetall MacOS 
 
@@ -25,7 +30,8 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 - `bonnie start`
 - `bonnie mount`
 
-=> Latest Speedtest (2022-10-25): 615 write, 655 read 
+=> Latest Speedtest (2022-10-25): 615 MB/s write, 655 MB/s read 
+=> with direct volume access from fuse to volumes (not proxied by filer server)
 => Reicht nur nicht für 8K 60FPS, laut Blackmagic Disk Test :D 
 
 ## Weed Cheatsheet
