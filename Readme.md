@@ -25,6 +25,9 @@ SeaweedFS Setup on mac mini server used as NAS for bjesuiter
 - `bonnie start`
 - `bonnie mount`
 
+=> Latest Speedtest (2022-10-25): 615 write, 655 read 
+=> Reicht nur nicht für 8K 60FPS, laut Blackmagic Disk Test :D 
+
 ## Weed Cheatsheet
 
 ### Generate default/template config files 
